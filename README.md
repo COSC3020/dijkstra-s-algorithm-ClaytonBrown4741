@@ -20,3 +20,15 @@ to be the most efficient one!
 
 What is the big $\Theta$ complexity of your implementation? Add your
 answer, including your reasoning, to this markdown file.
+
+**QUESTION**:
+Hello Professor. I am very sorry to bother you with this question, but I was looking through many  
+of these graphing problems and realized that I didn't know how to code most of them. The reason for  
+this isn't due to me misunderstanding the concepts or pseudocode, but rather because I do not know how  
+to properly define and access many of the graph datastructures that we've discussed. For instance, with  
+the code up above, how does one go about making an adjacency list in java script that also includes the  
+distance between the nodes? And on a related note, how does one access particular elements in that data  
+structure once it has been defined? I know we went over it a bit in class, but that was a bit simpler of  
+an example than what we're handling here. If you could give me any help with this, whether that be through  
+providing me with a block of code as an example yourself or if you simply give me an online resource to  
+use, then I would be very grateful. Thank you.
