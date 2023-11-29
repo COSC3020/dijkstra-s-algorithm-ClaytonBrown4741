@@ -22,6 +22,4 @@ What is the big $\Theta$ complexity of your implementation? Add your
 answer, including your reasoning, to this markdown file.
 
 **PLEASE NOTE:**  
-I have not yet finished this assignment, as I still need to add in the test cases and the runtime  
-analysis. However, the code is working very well, so I decided I'd post it here to document my progress  
-so far. 
+AUTOMATIC TEST CASES HAVE BEEN ADDED. RUNTIME ANALYSIS WILL BE ADDED LATER
