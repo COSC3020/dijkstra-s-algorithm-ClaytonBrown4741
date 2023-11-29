@@ -1,5 +1,14 @@
 function initializeDAlgorithm(graph){
+	visitedNodes={}
 	keyValues=Object.keys(graph);
+	//console.log(keyValues.length)
+	if (keyValues.length == 0)
+		return {}
+	if (keyValues.length == 1){
+		visitedNodes[keyValues[0]] = 0
+		//console.log(visitedNodes)
+		return visitedNodes
+	}
 	source=keyValues[0]
 	for (var i=0; i<Object.keys(graph).length; i++){
 		visitedNodes[keyValues[i]]= Infinity
@@ -34,16 +43,10 @@ function dAlgorithm(graph, currentDistance, currentNode){
                         	visitedNodes[graph[currentNode][j].node] = currentDistance+graph[currentNode][j].weight
                         }
 		}
-                        //if (graph[keyValues[i]][j].weight < smallestWeight){
-				//if (visitedNodes[keyValuse[i]] == Infinity)
-				//smallestWeight=graph[keyValues[i]][j].weight;
-				//smallestEdge=keyValues[i]
-			//}
         }
-	
 }
 
-var visitedNodes=[];
+var visitedNodes={};
 
 let graph = {
 	"a": [{ "node": "b", "weight": 10}, { "node": "c", "weight": 1},{ "node": "e", "weight": 30}],
@@ -52,4 +55,8 @@ let graph = {
 	"d": [{ "node": "e", "weight": 10}],
 	"e": [{ "node": "a", "weight": 10}]}
 
-console.log(initializeDAlgorithm(graph))
+var graph1= { "a": 0 }
+//console.log(Object.keys(graph).length)
+//console.log(initializeDAlgorithm(graph))
+//console.log(JSON.stringify(initializeDAlgorithm({"a": []})) == JSON.stringify(graph1))
+//console.log(graph1)
