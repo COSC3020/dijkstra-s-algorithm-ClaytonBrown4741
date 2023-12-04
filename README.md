@@ -21,8 +21,11 @@ to be the most efficient one!
 What is the big $\Theta$ complexity of your implementation? Add your
 answer, including your reasoning, to this markdown file.
 
+The following source was useful to me in figuring out the code for this problem:  
+https://reginafurness.medium.com/dijkstras-algorithm-in-javascript-4b5db48a93d4 
+
 **ANSWER**  
-The first major thing we do is take initialize the distances for each of the nodes to default to Infinity.  
+The first major thing we do is initialize the distances for each of the nodes to Infinity.  
 Because the code must iterate over every node in order to accomplish this, it takes |V| amount of time.  
 Next up, the code moves onto the big while loop where a majority of the calculations will take place.  
 This while loop will iterate over every node once again, so it has a runtime of |V| on its own. However, we  
@@ -30,10 +33,10 @@ must also account for the loops *within* the while loop as well. As a result, so
 one) will be multiplied by |V| in order to reflect how often they truly repeat.  
 The first big loop we encounter will be one that goes over the edges for each node in order to check their  
 current distances. This loop will go over every existing edge one time over the course of the whole program  
-which gives it a time of |E|.  
-After this, there's the loop which will choose which nodes to focus on in the next iteration of the while loop.  
+which gives it a total runtime of |E|.  
+After this, there's the loop which will choose which node to focus on in the next iteration of the while loop.  
 Because this loop will check every existing node, it will take |V| amount of time to complete. However, because  
 this loop is repeated for every node (thanks to the while loop), it ultimately gives us a runtime of $|V|^2$.  
 So in the end, the runtime will be $\Theta(|V| + |E| + |V|^2)$. After simplifying it, this comes  
 to a final answer of $\Theta(|E|+|V|^2)$.  
-Please let me know if any of my reasoning is off, and I will readily fix it. Thank you!
+Please let me know if any of my reasoning is off, and I will readily fix it. Thank you!  
