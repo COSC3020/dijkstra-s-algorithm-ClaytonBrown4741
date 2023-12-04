@@ -22,17 +22,18 @@ What is the big $\Theta$ complexity of your implementation? Add your
 answer, including your reasoning, to this markdown file.
 
 **ANSWER**  
-The first thing that must be taken into account is the loop at the very beginning which  
-initializes the distance of each vertex to infinity. This will take |V| amount of time  
-since it must do this for each node.  
-Next up, I have to check if all my nodes have already been visited, which will take |V| amount  
-of time since it has to go through each node. In addition to this, this loop repeats for every  
-node, which makes its total runtime actually $|V|^2$  
-Finally, there's the loop that actually goes through the graph and finds the distances between  
-them. First off, this is guarunteed to cover every edge at least once over the course of the runtime  
-which means that it's at least |E| time in length. In addition to this, the loop itself will repeat  
-$|V|^2$ amount of times, as each node will have to iterate over all other nodes in order to come to  
-the correct answer.  
-So in the end, the runtime will be $\Theta(|V| + |V|^2 + |V|^2 +|E|)$. After simplifying it, this comes  
-to a final answer of $\Theta(|V|^2 +|E|)$. 
+The first major thing we do is take initialize the distances for each of the nodes to default to Infinity.  
+Because the code must iterate over every node in order to accomplish this, it takes |V| amount of time.  
+Next up, the code moves onto the big while loop where a majority of the calculations will take place.  
+This while loop will iterate over every node once again, so it has a runtime of |V| on its own. However, we  
+must also account for the loops *within* the while loop as well. As a result, some of loops (namely the last  
+one) will be multiplied by |V| in order to reflect how often they truly repeat.  
+The first big loop we encounter will be one that goes over the edges for each node in order to check their  
+current distances. This loop will go over every existing edge one time over the course of the whole program  
+which gives it a time of |E|.  
+After this, there's the loop which will choose which nodes to focus on in the next iteration of the while loop.  
+Because this loop will check every existing node, it will take |V| amount of time to complete. However, because  
+this loop is repeated for every node (thanks to the while loop), it ultimately gives us a runtime of $|V|^2$.  
+So in the end, the runtime will be $\Theta(|V| + |E| + |V|^2)$. After simplifying it, this comes  
+to a final answer of $\Theta(|E|+|V|^2)$.  
 Please let me know if any of my reasoning is off, and I will readily fix it. Thank you!
