@@ -18,7 +18,6 @@ function initializeDAlgorithm(graph) {
 
 function DA(graph, currentNode){
 	 var keyValues=Object.keys(graph)
-	 var allEdges=[]
    	 while(visitedNodes.length < keyValues.length) {
 	 	//console.log(currentNode)
 		var currentCost=0
@@ -26,21 +25,22 @@ function DA(graph, currentNode){
                 var smallestIndex=-1
 		visitedNodes.push(currentNode)
         	for (var edge in graph[currentNode]) {
-            		allEdges.push(edge)
             		currentCost = distances[currentNode] + graph[currentNode][edge]
 			if (currentCost < distances[edge]){
 				distances[edge]=currentCost
 			}
         	}
 
-        	for(var i = 0; i < allEdges.length; i++) {
-            		if( (distances[allEdges[i]] < currentSmallest) && (!visitedNodes.includes(allEdges[i])) ) {
+		var distanceKeys=Object.keys(distances)
+		 //console.log(distanceKeys)
+		for (var i = 0; i < distanceKeys.length; i++){
+			if ((distances[distanceKeys[i]] < currentSmallest) && (!visitedNodes.includes(distanceKeys[i]))){
 				smallestIndex=i
-				currentSmallest = distances[allEdges[i]] 
+				currentSmallest = distances[distanceKeys[i]]
 			}
         	}
-		//console.log(currentSmallest)
-		currentNode=allEdges[smallestIndex]
+		currentNode=distanceKeys[smallestIndex]
+		//console.log(currentNode)
     	}
 //console.log(distances)
     return distances
@@ -48,12 +48,3 @@ function DA(graph, currentNode){
 
 var unvisited = []
 var distances = {}
-
-//graph = {'foo': {'boo': 10},
-//    'boo': {'d': 10},
-//    'd': {'e': 10},
-//    'e': {'bar': 10},
-//    'bar': {'foo': 2}};
-
-//graph2 = {'foo': {}}
-//console.log(initializeDAlgorithm(graph2))
