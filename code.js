@@ -1,62 +1,59 @@
-function initializeDAlgorithm(graph){
-	visitedNodes={}
-	keyValues=Object.keys(graph);
-	//console.log(keyValues.length)
+function initializeDAlgorithm(graph) {
+	var keyValues=Object.keys(graph)
+	distances={}
 	if (keyValues.length == 0)
 		return {}
 	if (keyValues.length == 1){
-		visitedNodes[keyValues[0]] = 0
-		//console.log(visitedNodes)
-		return visitedNodes
+		distances[keyValues[0]] = 0
+		return distances
 	}
 	source=keyValues[0]
+    	visitedNodes = []
 	for (var i=0; i<Object.keys(graph).length; i++){
-		visitedNodes[keyValues[i]]= Infinity
+		distances[keyValues[i]]= Infinity
 	}
-	visitedNodes[source]=0
-	dAlgorithm(graph, 0, source);
-	return visitedNodes
+	distances[source]=0
+    	return DA(graph, source)
 }
 
-function dAlgorithm(graph, currentDistance, currentNode){
-	allVisited=true;
-	visitedKeys=Object.keys(visitedNodes)
-	for (var i=0; i<visitedKeys.length; i++){
-		if (visitedNodes[visitedKeys[i]]===Infinity)
-			allVisited=false;
-	}
-	if (allVisited==true){
-		return visitedNodes
-	}
-	smallestWeight=Infinity;
-	smallestEdge=null
-	keyValues=Object.keys(graph);
-        for (var j=0; j < graph[currentNode].length; j++){
-		if (visitedNodes[graph[currentNode][j].node]===Infinity){
-			if (currentDistance+graph[currentNode][j].weight < visitedNodes[graph[currentNode][j].node]){
-				visitedNodes[graph[currentNode][j].node] = currentDistance+graph[currentNode][j].weight
+function DA(graph, currentNode){
+	 var keyValues=Object.keys(graph)
+	 var allEdges=[]
+   	 while(visitedNodes.length < keyValues.length) {
+	 	//console.log(currentNode)
+		var currentCost=0
+		var currentSmallest=Infinity
+                var smallestIndex=-1
+		visitedNodes.push(currentNode)
+        	for (var edge in graph[currentNode]) {
+            		allEdges.push(edge)
+            		currentCost = distances[currentNode] + graph[currentNode][edge]
+			if (currentCost < distances[edge]){
+				distances[edge]=currentCost
 			}
-			dAlgorithm(graph, visitedNodes[graph[currentNode][j].node], graph[currentNode][j].node)
-		}
-		else{
-			if (currentDistance+graph[currentNode][j].weight < visitedNodes[graph[currentNode][j].node]){
-                        	visitedNodes[graph[currentNode][j].node] = currentDistance+graph[currentNode][j].weight
-                        }
-		}
-        }
+        	}
+
+        	for(var i = 0; i < allEdges.length; i++) {
+            		if( (distances[allEdges[i]] < currentSmallest) && (!visitedNodes.includes(allEdges[i])) ) {
+				smallestIndex=i
+				currentSmallest = distances[allEdges[i]] 
+			}
+        	}
+		//console.log(currentSmallest)
+		currentNode=allEdges[smallestIndex]
+    	}
+//console.log(distances)
+    return distances
 }
 
-var visitedNodes={};
+var unvisited = []
+var distances = {}
 
-let graph = {
-	"a": [{ "node": "b", "weight": 10}, { "node": "c", "weight": 1},{ "node": "e", "weight": 30}],
-	"b": [{ "node": "c", "weight": 10}],
-	"c": [{ "node": "d", "weight": 10}],
-	"d": [{ "node": "e", "weight": 10}],
-	"e": [{ "node": "a", "weight": 10}]}
+//graph = {'foo': {'boo': 10},
+//    'boo': {'d': 10},
+//    'd': {'e': 10},
+//    'e': {'bar': 10},
+//    'bar': {'foo': 2}};
 
-var graph1= { "a": 0 }
-//console.log(Object.keys(graph).length)
-//console.log(initializeDAlgorithm(graph))
-//console.log(JSON.stringify(initializeDAlgorithm({"a": []})) == JSON.stringify(graph1))
-//console.log(graph1)
+//graph2 = {'foo': {}}
+//console.log(initializeDAlgorithm(graph2))
